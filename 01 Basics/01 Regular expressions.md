@@ -4,6 +4,7 @@
 
 ## Theory
 ··· . => match anything but a new line
+
 ··· \s => any white space
 ··· \d => digits
 ··· \w => a-z ,0-9
