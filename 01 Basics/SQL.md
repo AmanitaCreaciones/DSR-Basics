@@ -2,60 +2,60 @@
 
 ## Select all from a given table
 
-SELECT * 
+	SELECT * 
 
-FROM tabla
+	FROM tabla
 
 
 ## Select unique values from a given column in a table
 
-SELECT DISTINCT col_1
+	SELECT DISTINCT col_1
 
-FROM tabla
+	FROM tabla
 
 ## Count values of a table/column
 
-SELECT COUNT(col_1)
+	SELECT COUNT(col_1)
 
-FROM tabla
+	FROM tabla
 
 ## Select columns from a table given conditions, ordered and limited by the number of rows
 
-SELECT col_1, col_2
+	SELECT col_1, col_2
 
-FROM tabla
+	FROM tabla
 
-WHERE col_3 = || <= || >= || !=  'text'
+	WHERE col_3 = || <= || >= || !=  'text'
 
-AND || OR col_4 = number
+	AND || OR col_4 = number
 
-LIMIT number
+	LIMIT number
 
-ORDER BY col_5 ASC || DESC, col_6 ASC || DESC
+	ORDER BY col_5 ASC || DESC, col_6 ASC || DESC
 
 ## Select columns from a table with condition between values
 
-SELECT col_1, col_2
+	SELECT col_1, col_2
 
-FROM tabla
+	FROM tabla
 
-WHERE col_3 BETWEEN || NOT BETWEEN 9 AND 10
+	WHERE col_3 BETWEEN || NOT BETWEEN 9 AND 10
 
 ## Select columns from a table given condition IN
 
-SELECT col_1
+	SELECT col_1
 
-FROM tabla
+	FROM tabla
 
-WHERE col_3 IN || NOT IN (1,2,'text')
+	WHERE col_3 IN || NOT IN (1,2,'text')
 
 ## Select columns from a table given condition of similarity LIKE
 
-SELECT col_1
+	SELECT col_1
 
-FROM tabla
+	FROM tabla
 
-WHERE col_3 LIKE || NOT LIKE || ILIKE 'j%'
+	WHERE col_3 LIKE || NOT LIKE || ILIKE 'j%'
 
 * ILIKE is not case sensitive
 
@@ -66,41 +66,41 @@ WHERE col_3 LIKE || NOT LIKE || ILIKE 'j%'
 
 ## Aggregate functions
 
-SELECT AVG || MEAN || MAX || MIN || SUM || ROUND((SUM(col_1))
+	SELECT AVG || MEAN || MAX || MIN || SUM || ROUND((SUM(col_1))
 
-FROM tabla
+	FROM tabla
 
 ## GROUP BY columns from a table
 
-SELECT col_1 , SUM(col_2)
+	SELECT col_1 , SUM(col_2)
 
-FROM tabla
+	FROM tabla
 
-WHERE col_4 IN ('A','B')
+	WHERE col_4 IN ('A','B')
 
-GROUP BY col_1
+	GROUP BY col_1
 
-HAVING SUM(col_2) > 20 
+	HAVING SUM(col_2) > 20 
 
 * HAVING wolks like WHERE but for grouped values
 
 ## Select columns/tables and rename them
 
-SELECT col_1 AS columna
+	SELECT col_1 AS columna
 
-FROM tabla AS tb
+	FROM tabla AS tb
 
 ## UNION of tables (one after the other)
 
-SELECT *
+	SELECT *
 
-FROM tabla_1
+	FROM tabla_1
 
-UNION
+	UNION
 
-SELECT *
+	SELECT *
 
-FROM tabla_2
+	FROM tabla_2
 
 * UNION delete duplicated values
 
@@ -108,92 +108,93 @@ FROM tabla_2
 
 ## INNER JOINs from tables
 
-SELECT T1.col_1,T1.col_2,T2.col_1,T2.col_2
+	SELECT T1.col_1,T1.col_2,T2.col_1,T2.col_2
 
-FROM tabla_1 AS T1
+	FROM tabla_1 AS T1
 
-INNER JOIN tabla_2 AS T2
+	INNER JOIN tabla_2 AS T2
 
-ON T1.col_1 = T2.col_1
+	ON T1.col_1 = T2.col_1
 
 
 * if both columns ID have the same name, instead of "ON T1.col_1 = T2.col_1" can be used "JOIN Tabla_2 USING(col_1)"
 
 ## Select columns from a table given conditions
 
-SELECT col_1
+	SELECT col_1
 
-FROM tabla
-
-## Select columns from a table given conditions
-
-SELECT col_1
-
-FROM tabla
+	FROM tabla
 
 ## Select columns from a table given conditions
 
-SELECT col_1
+	SELECT col_1
 
-FROM tabla
+	FROM tabla
 
+## Select columns from a table given conditions
 
+	SELECT col_1
 
-
-SELECT film.title,actor.first_name 
-
-FROM film_actor
-
-LEFT JOIN actor 
-
-ON film_actor.actor_id = actor.actor_id
-
-LEFT JOIN film
-
-ON film.film_id = film_actor.film_id
+	FROM tabla
 
 
 
+	
+	SELECT film.title,actor.first_name 
 
-SELECT film.title , rental.return_date
+	FROM film_actor
 
-FROM rental
+	LEFT JOIN actor 
 
-LEFT JOIN inventory
+	ON film_actor.actor_id = actor.actor_id
 
-ON inventory.inventory_id = rental.inventory_id
+	LEFT JOIN film
 
-LEFT JOIN film
-
-ON film.film_id = inventory.film_id
-
-WHERE rental.return_date < '2005-05-28' AND rental.return_date >= '2005-05-27'
-
-
-SELECT * 
-
-FROM film
-
-LEFT JOIN inventory 
-
-ON inventory.film_id = film.film_id
-
-WHERE inventory.film_id IS NULL
+	ON film.film_id = film_actor.film_id
 
 
 
 
-SELECT rental_rate, title
+	SELECT film.title , rental.return_date
 
-FROM film
+	FROM rental
 
-WHERE rental_rate > (
+	LEFT JOIN inventory
 
-	SELECT AVG(rental_rate)
-  
+	ON inventory.inventory_id = rental.inventory_id
+
+	LEFT JOIN film
+
+	ON film.film_id = inventory.film_id
+
+	WHERE rental.return_date < '2005-05-28' AND rental.return_date >= '2005-05-27'
+
+
+	SELECT * 
+
 	FROM film
+
+	LEFT JOIN inventory 
+
+	ON inventory.film_id = film.film_id
+
+	WHERE inventory.film_id IS NULL
+
+
+
+
+
+	SELECT rental_rate, title
+
+	FROM film
+
+	WHERE rental_rate > (
+
+		SELECT AVG(rental_rate)
   
-	)
+		FROM film
+  
+		)
   
   
   
