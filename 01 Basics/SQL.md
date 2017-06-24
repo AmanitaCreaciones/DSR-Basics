@@ -90,6 +90,35 @@ SELECT col_1 AS columna
 
 FROM tabla AS tb
 
+## UNION of tables (one after the other)
+
+SELECT *
+
+FROM tabla_1
+
+UNION
+
+SELECT *
+
+FROM tabla_2
+
+* UNION delete duplicated values
+
+* UNION ALL doesn't delete duplicated values 
+
+## INNER JOINs from tables
+
+SELECT T1.col_1,T1.col_2,T2.col_1,T2.col_2
+
+FROM tabla_1 AS T1
+
+INNER JOIN tabla_2 AS T2
+
+ON T1.col_1 = T2.col_1
+
+
+* if both columns ID have the same name, instead of "ON T1.col_1 = T2.col_1" can be used "JOIN Tabla_2 USING(col_1)"
+
 ## Select columns from a table given conditions
 
 SELECT col_1
@@ -108,14 +137,63 @@ SELECT col_1
 
 FROM tabla
 
-## Select columns from a table given conditions
 
-SELECT col_1
 
-FROM tabla
 
-## Select columns from a table given conditions
+SELECT film.title,actor.first_name 
 
-SELECT col_1
+FROM film_actor
 
-FROM tabla
+LEFT JOIN actor 
+
+ON film_actor.actor_id = actor.actor_id
+
+LEFT JOIN film
+
+ON film.film_id = film_actor.film_id
+
+
+
+
+SELECT film.title , rental.return_date
+
+FROM rental
+
+LEFT JOIN inventory
+
+ON inventory.inventory_id = rental.inventory_id
+
+LEFT JOIN film
+
+ON film.film_id = inventory.film_id
+
+WHERE rental.return_date < '2005-05-28' AND rental.return_date >= '2005-05-27'
+
+
+SELECT * 
+
+FROM film
+
+LEFT JOIN inventory 
+
+ON inventory.film_id = film.film_id
+
+WHERE inventory.film_id IS NULL
+
+
+
+
+SELECT rental_rate, title
+
+FROM film
+
+WHERE rental_rate > (
+
+	SELECT AVG(rental_rate)
+  
+	FROM film
+  
+	)
+  
+  
+  
