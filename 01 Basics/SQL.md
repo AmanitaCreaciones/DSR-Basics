@@ -119,27 +119,8 @@
 
 * if both columns ID have the same name, instead of "ON T1.col_1 = T2.col_1" can be used "JOIN Tabla_2 USING(col_1)"
 
-## Select columns from a table given conditions
+## LEFT JOIN example
 
-	SELECT col_1
-
-	FROM tabla
-
-## Select columns from a table given conditions
-
-	SELECT col_1
-
-	FROM tabla
-
-## Select columns from a table given conditions
-
-	SELECT col_1
-
-	FROM tabla
-
-
-
-	
 	SELECT film.title,actor.first_name 
 
 	FROM film_actor
@@ -152,7 +133,23 @@
 
 	ON film.film_id = film_actor.film_id
 
+## SELF JOIN
 
+	SELECT T1.col_1,T1.col_2,T2.col_1,T2.col_2
+
+	FROM tabla_1 AS T1
+
+	INNER JOIN tabla_1 AS T2
+
+	WHERE T1.col_1 > T2.col_2
+	
+## Date and time extraction
+
+	SELECT EXTRACT(DAY FROM col_1)
+	
+	FROM tabla_1
+
+## Working with dates example
 
 
 	SELECT film.title , rental.return_date
@@ -169,20 +166,7 @@
 
 	WHERE rental.return_date < '2005-05-28' AND rental.return_date >= '2005-05-27'
 
-
-	SELECT * 
-
-	FROM film
-
-	LEFT JOIN inventory 
-
-	ON inventory.film_id = film.film_id
-
-	WHERE inventory.film_id IS NULL
-
-
-
-
+## sub query example
 
 	SELECT rental_rate, title
 
@@ -195,6 +179,24 @@
 		FROM film
   
 		)
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   
   
